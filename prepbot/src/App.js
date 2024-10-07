@@ -1,27 +1,47 @@
-//App.js
-import React from 'react';
+import React, { useState } from 'react';
+import { ChakraProvider, Flex, IconButton, Box, Switch, useColorMode } from '@chakra-ui/react';
+import { FiMenu } from 'react-icons/fi';
 import Bot from './Components/Bot';
 import LeftColumn from './Components/LeftColumn';
-import { ChakraProvider, Flex } from '@chakra-ui/react';
-import './styles.css';
 
 const App = () => {
+  const [isLeftColumnOpen, setIsLeftColumnOpen] = useState(false); // Start with LeftColumn hidden
+  const { colorMode, toggleColorMode } = useColorMode(); // Hook for dark mode
+  const toggleLeftColumn = () => {
+    setIsLeftColumnOpen(!isLeftColumnOpen); // Toggle LeftColumn visibility
+  };
+
   return (
-    <ChakraProvider>
-      <Flex direction="row" height="100vh" width="100vw">
-        {/* LeftColumn takes 35% of the width */}
-        <Flex flex="0.35" bg="gray.50">
+    <Flex height="100vh" width="100vw" position="relative" bg={colorMode === 'light' ? 'white' : 'gray.900'}>
+      {/* Hamburger Menu IconButton */}
+      <IconButton
+        aria-label="Toggle Menu"
+        icon={<FiMenu />}
+        position="absolute"
+        top={4}
+        left={4}
+        zIndex={10}
+        onClick={toggleLeftColumn}
+      />
+
+      {/* Dark Mode Toggle Switch */}
+      <Box position="absolute" top={4} right={4} zIndex={10}>
+        <Switch colorScheme="teal" isChecked={colorMode === 'dark'} onChange={toggleColorMode} />
+      </Box>
+
+      {/* LeftColumn takes 35% of the width, hidden when toggled off */}
+      {isLeftColumnOpen && (
+        <Flex flex="0.35" minW="200px" bg={colorMode === 'light' ? 'white' : 'gray.800'}>
           <LeftColumn />
         </Flex>
-        
-        {/* Bot takes 65% of the width */}
-        <Flex flex="0.65" bg="white">
-          <Bot />
-        </Flex>
+      )}
+
+      {/* Bot takes the remaining width */}
+      <Flex flex={isLeftColumnOpen ? '0.65' : '1'} bg={colorMode === 'light' ? 'white' : 'gray.800'}>
+        <Bot />
       </Flex>
-    </ChakraProvider>
+    </Flex>
   );
-}
+};
 
 export default App;
-

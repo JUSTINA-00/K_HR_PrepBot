@@ -1,4 +1,3 @@
-//Bot.js
 import React from 'react';
 import { Heading, Flex, Button, VStack, Text, Textarea } from '@chakra-ui/react';
 
@@ -34,4 +33,3 @@ const Bot = () => {
 };
 
 export default Bot;
-
