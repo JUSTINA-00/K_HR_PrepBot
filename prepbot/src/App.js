@@ -26,18 +26,18 @@ const App = () => {
 
       {/* Dark Mode Toggle Switch */}
       <Box position="absolute" top={4} right={4} zIndex={10}>
-        <Switch colorScheme="teal" isChecked={colorMode === 'dark'} onChange={toggleColorMode} />
+        <Switch colorScheme="gray" isChecked={colorMode === 'dark'} onChange={toggleColorMode} />
       </Box>
 
       {/* LeftColumn takes 35% of the width, hidden when toggled off */}
       {isLeftColumnOpen && (
-        <Flex flex="0.35" minW="200px" bg={colorMode === 'light' ? 'white' : 'gray.800'}>
+        <Flex flex="0.25" minW="200px" bg={colorMode === 'light' ? 'white' : 'gray.800'}>
           <LeftColumn />
         </Flex>
       )}
 
       {/* Bot takes the remaining width */}
-      <Flex flex={isLeftColumnOpen ? '0.65' : '1'} bg={colorMode === 'light' ? 'white' : 'gray.800'}>
+      <Flex flex={isLeftColumnOpen ? '0.75' : '1'} bg={colorMode === 'light' ? 'white' : 'gray.800'}>
         <Bot />
       </Flex>
     </Flex>

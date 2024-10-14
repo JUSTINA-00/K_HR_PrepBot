@@ -13,11 +13,12 @@ const LeftColumn = () => {
   };
 
   return (
-    <Flex direction="column" w="100%" p={4} borderRight="1px solid #E2E8F0" bg={colorMode === 'light' ? 'gray.50' : 'gray.700'}>
+    <Flex direction="column" w="100%" p={4} borderRight="1px solid #E2E8F0" bg={colorMode === 'light' ? 'gray.50' : 'gray.800'} paddingTop={20}>
+      
       {/* Upload Section */}
       <Box mb={4}>
         <Input type="file" accept=".pdf" onChange={handleFileChange} display="none" id="file-upload" />
-        <Button as="label" htmlFor="file-upload" w="100%" colorScheme="blue" mb={2}>
+        <Button as="label" htmlFor="file-upload" w="100%" bg={colorMode === 'light' ? 'gray.300' : 'gray.700'} mb={2}>
           Upload Resume
         </Button>
         {fileName && <Text fontSize="sm" color="gray.500">{fileName} uploaded</Text>}
@@ -46,12 +47,12 @@ const LeftColumn = () => {
 
       {/* Generate Questions Button */}
       <Box mb={4}>
-        <Button w="100%" colorScheme="orange">Generate Q</Button>
+        <Button w="100%" bg={colorMode === 'light' ? 'gray.300' : 'gray.700'}>Generate Q</Button>
       </Box>
 
       {/* Feedback Button */}
       <Box>
-        <Button w="100%" colorScheme="red">Feedback</Button>
+        <Button w="100%" bg={colorMode === 'light' ? 'gray.300' : 'gray.700'}>Feedback</Button>
       </Box>
     </Flex>
   );
